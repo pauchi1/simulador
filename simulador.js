@@ -12,4 +12,9 @@ function calcular() {
     
     let cmpCalculo = document.getElementById("spnDisponible");
     cmpCalculo.textContent = calcularValor;
+
+    let calcularPago = calcularCapacidadPago(calcularValor);
+
+    let cmpPago = document.getElementById("spnCapacidadPago");
+    cmpPago.textContent = calcularPago;
 }

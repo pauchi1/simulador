@@ -1,3 +1,36 @@
+piensa como un diseñador gráfico y sigue las siguientes indicaciones:
+no cambies ningún id que esté en el archivo de HTML.
+no unas la programación del HTML con el CSS, mantenlos en 2 archivos separados.
+no me entregues archivos descargables, dame el texto para poder copiar y pegar en visual studio code.
+has que la página sea una estética minimalista y empresarial sin saltar que sea interactiva para el usuario.
+crea el código en CSS para que sea responsive, osea que sea compatible para celulares, tablets y ordenadores.
+pon en el fondo una imágen que tiene como nombre empresa.png.
+
+resultado de chatGPT:
+
+He revisado tu HTML y tu CSS. Mantendré todos los id exactamente como están, conservaré HTML y CSS en archivos separados y trabajaré únicamente sobre el diseño. Tu HTML ya enlaza correctamente la hoja simulador.css.
+
+Además, el formulario actual tiene las secciones de Datos financieros, Solicitud de crédito, resultados y botones que podemos aprovechar sin modificar su funcionamiento.
+
+1. HTML
+
+No necesitas cambiar los id. Tu HTML puede quedarse prácticamente igual. Solo te recomiendo agregar la imagen empresa.png a la misma carpeta donde están tus archivos, porque el CSS se encargará de colocarla como fondo.
+
+Tu estructura actual ya está separada correctamente mediante:
+
+<link rel="stylesheet" href="simulador.css">
+
+Por lo tanto, no voy a mezclar CSS dentro del HTML.
+
+2. simulador.css
+
+Reemplaza todo el contenido actual de simulador.css por este:
+
+CSS responsive para el simulador de crédito
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;

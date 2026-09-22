@@ -44,4 +44,12 @@ function calcular() {
 
     let cmpCuotaCalculada = document.getElementById("spnCuotaMensual");
     cmpCuotaCalculada.textContent = cmpCalcularCuota;
+
+    let aprobado = aprobarCredito(cmpPagar, cmpCalcularCuota);
+    let cmpCredito = document.getElementById("spnEstadoCredito");
+    if (aprobado) {
+        cmpCredito.textContent = "CREDITO APROBADO";
+    } else {
+        cmpCredito.textContent = "CREDITO RECHAZADO";
+    }
 }

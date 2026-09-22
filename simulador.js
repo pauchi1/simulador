@@ -39,4 +39,9 @@ function calcular() {
 
     let cmpValor = document.getElementById("spnTotalPrestamo");
     cmpValor.textContent = cmpPagar;
+
+    let cmpCalcularCuota = calcularCuotaMensual(cmpPagar, plazoInt);
+
+    let cmpCuotaCalculada = document.getElementById("spnCuotaMensual");
+    cmpCuotaCalculada.textContent = cmpCalcularCuota;
 }

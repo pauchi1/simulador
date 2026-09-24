@@ -1,0 +1,115 @@
+Ahora con el código que mandaste junto a los siguientes mandados, quiero validar input en JavaScript con las siguientes reglas:
+
+mostrar mensaje debajo de cada input (no usar alert)
+el mensaje debe ser de color rojo e incursiva.
+Validaciones:
+solo permitido números.
+máximo 5 caracteres permitidos.
+No pueden quedar vacíos.
+Condiciones técnicas:
+Usar los mismos IDs existentes:
+
+txtIngresos, txtEgresos, txtMonto, txtPlazo, txtTasaInteres.
+
+usar eventos onblur para validar cuando el usuario salga del input.
+mostrar errores en un elemento debajo del input.
+
+Devuélveme solo las partes que debo agregar o modificar (HTML, JS o CSS), no todo el código.
+
+respuesta de chatGPT:
+
+
+
+Perfecto. Como tu simulador.js actualmente valida solo txtIngresos y utiliza alert, vamos a reemplazar esa validación por una que funcione para los 5 campos, manteniendo todos tus IDs.
+
+Solo agrega/modifica estas partes:
+
+1. HTML — agrega un mensaje debajo de cada input
+
+Después de cada <input>, agrega un <small>.
+
+<input type="text" id="txtIngresos" onblur="validarInput(this)">
+<small id="error-txtIngresos" class="mensaje-error"></small>
+<input type="text" id="txtEgresos" onblur="validarInput(this)">
+<small id="error-txtEgresos" class="mensaje-error"></small>
+<input type="text" id="txtMonto" onblur="validarInput(this)">
+<small id="error-txtMonto" class="mensaje-error"></small>
+<input type="text" id="txtPlazo" onblur="validarInput(this)">
+<small id="error-txtPlazo" class="mensaje-error"></small>
+<input type="text" id="txtTasaInteres" onblur="validarInput(this)">
+<small id="error-txtTasaInteres" class="mensaje-error"></small>
+2. JavaScript — reemplaza validarVentas()
+
+En simulador.js, elimina la función validarVentas() que actualmente usa alert y agrega esta:
+
+function validarInput(input) {
+
+    let mensaje = document.getElementById("error-" + input.id);
+
+    mensaje.textContent = "";
+
+    if (input.value.trim() === "") {
+        mensaje.textContent = "Este campo no puede quedar vacío.";
+        return false;
+    }
+
+    if (!/^[0-9]+$/.test(input.value)) {
+        mensaje.textContent = "Solo se permiten números.";
+        return false;
+    }
+
+    if (input.value.length > 5) {
+        mensaje.textContent = "Máximo 5 caracteres permitidos.";
+        return false;
+    }
+
+    return true;
+}
+3. JavaScript — agrega una validación general antes de calcular()
+
+Al inicio de tu función calcular(), reemplaza:
+
+if (validarVentas() == false) {
+    return;
+}
+
+por:
+
+let camposValidos = true;
+
+let campos = [
+    "txtIngresos",
+    "txtEgresos",
+    "txtMonto",
+    "txtPlazo",
+    "txtTasaInteres"
+];
+
+for (let i = 0; i < campos.length; i++) {
+
+    let input = document.getElementById(campos[i]);
+
+    if (validarInput(input) == false) {
+        camposValidos = false;
+    }
+}
+
+if (camposValidos == false) {
+    return;
+}
+
+Esto también evita que calcular() continúe cuando algún campo tenga errores. Tu función calcular() actualmente empieza haciendo una validación antes de realizar los cálculos, así que esta modificación encaja directamente en esa estructura.
+
+4. CSS — agrega al final de simulador.css
+.mensaje-error {
+    display: block;
+
+    margin-top: 5px;
+    min-height: 18px;
+
+    color: #dc2626;
+
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 500;
+}

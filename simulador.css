@@ -500,3 +500,16 @@ input:focus-visible {
         scroll-behavior: auto !important;
     }
 }
+
+.mensaje-error {
+    display: block;
+
+    margin-top: 5px;
+    min-height: 18px;
+
+    color: #dc2626;
+
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 500;
+}

@@ -1,5 +1,53 @@
 //AQUI EL JAVASCRIPT PARA MANIPULAR EL HTML
+function validarInput(input) {
+
+    let mensaje = document.getElementById("error-" + input.id);
+
+    mensaje.textContent = "";
+
+    if (input.value.trim() === "") {
+        mensaje.textContent = "Este campo no puede quedar vacío.";
+        return false;
+    }
+
+    if (!/^[0-9]+$/.test(input.value)) {
+        mensaje.textContent = "Solo se permiten números.";
+        return false;
+    }
+
+    if (input.value.length > 5) {
+        mensaje.textContent = "Máximo 5 caracteres permitidos.";
+        return false;
+    }
+
+    return true;
+}
+
 function calcular() {
+
+    let camposValidos = true;
+
+    let campos = [
+       "txtIngresos",
+       "txtEgresos",
+      "txtMonto",
+      "txtPlazo",
+      "txtTasaInteres"
+    ];
+
+    for (let i = 0; i < campos.length; i++) {
+
+       let input = document.getElementById(campos[i]);
+
+      if (validarInput(input) == false) {
+          camposValidos = false;
+      }
+    }
+
+    if (camposValidos == false) {
+       return;
+    }
+
     //let ingreso = document.getElementById("txtIngresos");
     //let ingresoSTR = ingreso.value;
     //let ingresoFloat = parseFloat(ingresoSTR);
@@ -14,7 +62,7 @@ function calcular() {
     //let cmpCalculo = document.getElementById("spnDisponible");
     //cmpCalculo.textContent = calcularValor;
     let calcularValor = calcularDisponible(ingresoFloat, egresoFloat);
-    mostrarEnSpan("spnCapacidadPago", calcularPago);
+    mostrarEnSpan("spnDisponible", calcularValor);
 
     //let calcularPago = calcularCapacidadPago(calcularValor);
     //let cmpPago = document.getElementById("spnCapacidadPago");
